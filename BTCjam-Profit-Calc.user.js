@@ -2,7 +2,7 @@
 // @name        BTCjam Profit
 // @namespace   www.slo-runner.ws.gy
 // @description BTCjam profit calculator
-// @include     *btcjam.com*
+// @include     *btcjam.com/listings/*
 // @version     1.0
 // @owner       Slo_Runner (https://www.facebook.com/slo.runner.samp)
 // @grant       none
@@ -33,12 +33,16 @@ element.appendChild(para);
 window.calc = function () {
     var invest = document.getElementById('invest') .value;
     var percentage = document.getElementById('percent') .value;
+    var term = document.getElementById('term') .value;
     var percents = (percentage / 100) * invest;
     var total = parseFloat(percents) + parseFloat(invest);
-    document.getElementById('result') .value = total.toFixed(8);
+    var perday = parseFloat(percents) / parseFloat(term);
+    document.getElementById('result') .value = total.toFixed(8) + " BTC(invest+profit)";
+    document.getElementById('day') .value = perday.toFixed(8) + " BTC/day";
 };
-var askformsg = "<div><span class='img sp_38ydyu sx_004ff3'></span><a href='https://www.facebook.com/slo.runner.samp' target='_blank' style='position:absolute;padding-left:3px;font-size:11px;color:#00FF00;'>Simple return calculator by Slo_Runner</a></div></br><br>";
-askformsg += "<div><input id='invest' placeholder='Invest amount'></input><br><input id='percent' placeholder='Rate'></input><br><fieldset><legend><center>Result</center></legend><input id='result' placeholder='Total amount earned'></input></fieldset></div>";
+
+var askformsg = "<div id='dragable'><span class='img sp_38ydyu sx_004ff3'></span><a href='https://www.facebook.com/slo.runner.samp' target='_blank' style='position:absolute;padding-left:3px;font-size:11px;color:#00FF00;'>Simple return calculator by Slo_Runner</a></div></br><br>";
+askformsg += "<div><input id='invest' placeholder='Invest amount'></input><br><input id='percent' placeholder='Rate'></input><br><input id='term' placeholder='Term (days)'></input><br><fieldset><legend><center>Result</center></legend><input id='result' placeholder='Total amount earned'></input><br><input id='day' placeholder='BTC/day'></input></fieldset></div>";
 askformsg += "<div><center><button class='btn btn-gold' onclick='window.calc()'>Calculate</button><button class='btn btn-primary' onclick='window.donate()'>Donations</button></center></div>";
 var Popupset = document.createElement('div');
 Popupset.setAttribute('style', 'position:fixed;left:0%;margin-left:50px;bottom:50px;z-index:9999;font-size:11px;font-family:tahoma;color:#3B5998;box-shadow:0pt 1px 0pt rgba(0,0,0,0.1);font-weight:bold;border-radius:3px;border:1px solid rgba(200,200,50,0.2);padding:5px;background-color:#4276A3');
